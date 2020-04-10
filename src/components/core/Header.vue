@@ -7,7 +7,7 @@
       crossorigin="anonymous"
     />
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Index</a>
+      <a class="navbar-brand" href="/">Index</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -21,29 +21,22 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-item nav-link active" href="#">
+          <a class="nav-item nav-link active" href="/">
             Home
             <span class="sr-only">(current)</span>
           </a>
           <a class="nav-item nav-link active" href="#">Top Anime</a>
           <a class="nav-item nav-link active" href="#">Seasonal Anime</a>
-          <a class="nav-item nav-link active" href="#">Login</a>
-          <a class="nav-item nav-link active" href="#">Sign Up</a>
+          <a class="nav-item nav-link active" href="/create-category">Create A Category</a>
         </div>
+      </div>
+      <div class="navbar-nav navbar-right">
+        <a class="nav-item nav-link active" href="/login">Login</a>
+        <a class="nav-item nav-link active" href="/register">Sign Up</a>
       </div>
     </nav>
 
-    <div class="container">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <h5>
-              <a class="nav-item nav-link active">Welcome to MyAnimeList.net!</a>
-            </h5>
-          </div>
-        </div>
-      </nav>
-    </div>
+    
   </div>
 </template>
 
