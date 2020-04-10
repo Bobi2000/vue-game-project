@@ -1,4 +1,4 @@
-# game-project
+# project
 
 ## Project setup
 ```
