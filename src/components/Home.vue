@@ -5,7 +5,7 @@
       <div v-for="category in animes" :key="category.data[0].categoryTitle">
         <article>
           <hr />
-          <a class="animeLink" v-bind:href="'anime/' + category.data[0].categoryId">
+          <a class="animeLink" v-bind:href="'/anime/' + category.data[0].categoryId">
             <h4 class="animeLink">{{category.data[0].categoryTitle}}</h4>
           </a>
           <hr />
@@ -19,7 +19,7 @@
               <a class="animeLink" v-bind:href="'anime-details/' + anime.id">
                 <p class="card-text">{{anime.title}}</p>
                 <figure>
-                  <img class="card-img image" v-bind:src="anime.thumbnailURL" alt="Card image" />
+                  <img width="196" height="300" class="card-img image" v-bind:src="anime.thumbnailURL" alt="Card image" />
                   <div class="card-img-overlay"></div>
                 </figure>
               </a>

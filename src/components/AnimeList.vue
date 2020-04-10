@@ -1,19 +1,24 @@
 <template>
   <div>
-    <sub-header v-bind:message="animes[0].categoryTitle"></sub-header>
+    <a>
+      <sub-header v-bind:message="animes[0].categoryTitle"></sub-header>
+    </a>
     <div class="container">
       <div class="card-columns">
         <div v-for="anime in animes" :key="anime.id" class="card">
-          <img
-            class="card-img-top"
-            v-bind:src="anime.thumbnailURL"
-            alt="Card image cap"
-          />
+          <a class="animeLink" v-bind:href="'/anime-details/' + anime.id">
+            <img width="354" height="496" class="card-img-top" v-bind:src="anime.thumbnailURL" alt="Card image cap" />
+          </a>
           <div class="card-body">
-            <h5 class="card-title">{{anime.title}}</h5>
-            <p
-              class="card-text"
-            >{{anime.synopsis}}</p>
+            <a class="animeLink" v-bind:href="'/anime-details/' + anime.id">
+              <h5 class="card-title">{{anime.title}}</h5>
+            </a>
+            <div v-if="anime.synopsis.length > 110">
+              <p class="card-text">{{anime.synopsis.substring(0,110)}} ...</p>
+            </div>
+            <div v-else>
+              <p class="card-text">{{anime.synopsis}}</p>
+            </div>
           </div>
         </div>
       </div>

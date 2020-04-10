@@ -20,12 +20,18 @@
 
 <script>
 import SubHeader from "./core/SubHeader.vue";
+import authStore from "./../store/auth.js";
 
 export default {
   name: "CreateCategory",
 
   components: {
     SubHeader
+  },
+  created() {
+    if(!authStore.checkIfIsLogged()) {
+      this.$router.push("/");
+    }
   }
 };
 </script>

@@ -5,7 +5,7 @@
       <article class="card-body">
         <a href class="float-right btn btn-outline-primary">Sign in</a>
         <h4 class="card-title mb-4 mt-1">Sign up</h4>
-        <form action method="post">
+        <form @submit.prevent="submitHandler">
           <div class="form-group">
             <label>Your email</label>
             <input
@@ -73,7 +73,7 @@
           </template>
 
           <div class="form-group container">
-            <button type="button" class="btn btn-primary btn-block">Register</button>
+            <button class="btn btn-primary btn-block">Register</button>
           </div>
         </form>
       </article>
@@ -91,7 +91,7 @@ import {
   maxLength
 } from "vuelidate/lib/validators";
 import { helpers } from "vuelidate/lib/validators";
-
+import axios from "axios";
 import SubHeader from "./core/SubHeader.vue";
 
 const alphanumeric = helpers.regex("alphanumeric", /^[a-zA-Z0-9]*$/);
@@ -104,7 +104,6 @@ export default {
       email: "",
       password: "",
       rePassword: "",
-      success: false
     };
   },
   validations: {
@@ -132,13 +131,32 @@ export default {
   methods: {
     submitHandler() {
       this.$v.$touch();
-      if (this.$v.$error) {
-        return;
-      }
-      console.log("Form was validated successfully!");
-      this.success = true;
-    }
+      if (this.$v.$invalid) { return; }
+
+      const { username, email, password } = this;
+      axios.post(`https://localhost:44331/api/animeusers`, { username, email, password }).then(() => {
+        this.$router.push("/login");
+      });
+    },
+    /*register() {
+      const { email, password } = this;
+
+      axios
+        .get(`https://localhost:44331/api/animeusers/${email}/${password}`)
+        .then(res => {
+          if (res.status === 200) {
+            authStore.setUser(res.data);
+            this.$router.push("/");
+            location.reload();
+            return;
+          }
+        });
+        
+
+          this.error = true;
+    },*/
   },
+
   components: {
     SubHeader
   }

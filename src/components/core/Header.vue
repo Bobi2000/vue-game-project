@@ -25,23 +25,54 @@
             Home
             <span class="sr-only">(current)</span>
           </a>
-          <a class="nav-item nav-link active" href="#">Top Anime</a>
-          <a class="nav-item nav-link active" href="#">Seasonal Anime</a>
-          <a class="nav-item nav-link active" href="/create-category">Create A Category</a>
+          <a class="nav-item nav-link active" href="/top-anime">Top Anime</a>
+          <a class="nav-item nav-link active" href="/anime/1">Seasonal Anime</a>
+          <a class="nav-item nav-link active" href="/categories">Categories</a>
+          <a
+            v-if="isLogged && isAdmin"
+            class="nav-item nav-link active"
+            href="/create-category"
+          >Create A Category</a>
         </div>
       </div>
-      <div class="navbar-nav navbar-right">
+      <div v-if="!isLogged" class="navbar-nav navbar-right">
         <a class="nav-item nav-link active" href="/login">Login</a>
         <a class="nav-item nav-link active" href="/register">Sign Up</a>
       </div>
+      <div v-else class="navbar-nav navbar-right">
+        <a class="nav-item nav-link active">{{username}}</a>
+        <a @click="logout" class="nav-item nav-link active">Logout</a>
+      </div>
     </nav>
-
-    
   </div>
 </template>
 
 <script>
-export default {};
+import authStore from "../../store/auth.js";
+
+export default {
+  data() {
+    return {
+      isLogged: false,
+      username: "",
+      isAdmin: false,
+    }
+  },
+  created() {
+    this.isLogged = authStore.checkIfIsLogged();
+    if(this.isLogged) {
+      this.username = authStore.getUsername();
+      this.isAdmin = authStore.isAdmin();
+    }
+  },
+  methods: {
+    logout() {
+      this.$router.push("/");
+      authStore.clearUser(); 
+      this.isLogged = false;
+    }
+  },
+};
 </script>
 
 <style scoped>
