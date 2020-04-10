@@ -1,6 +1,6 @@
 <template>
   <div>
-    <sub-header message="Login to MyAnimeList"></sub-header>
+    <sub-header message="Login to ViewAnime"></sub-header>
     <div class="card container">
       <article class="card-body">
         <a href class="float-right btn btn-outline-primary">Sign up</a>

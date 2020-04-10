@@ -1,19 +1,40 @@
 <template>
   <div>
-    <a>
-      <sub-header v-bind:message="animes[0].categoryTitle"></sub-header>
-    </a>
+    <div>
+      <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <h5>
+                <a class="nav-item nav-link active">{{category.title}}</a>
+              </h5>
+            </div>
+          </div>
+          <div class="navbar-nav navbar-right">
+            <a v-if="isLogged && isAdmin" class="nav-item nav-link active" v-bind:href="'/create-anime/' + category.id">
+              <h5>Add Anime</h5>
+            </a>
+          </div>
+        </nav>
+      </div>
+    </div>
     <div class="container">
       <div class="card-columns">
         <div v-for="anime in animes" :key="anime.id" class="card">
           <a class="animeLink" v-bind:href="'/anime-details/' + anime.id">
-            <img width="354" height="496" class="card-img-top" v-bind:src="anime.thumbnailURL" alt="Card image cap" />
+            <img
+              width="354"
+              height="496"
+              class="card-img-top"
+              v-bind:src="anime.thumbnailURL"
+              alt="Card image cap"
+            />
           </a>
           <div class="card-body">
             <a class="animeLink" v-bind:href="'/anime-details/' + anime.id">
               <h5 class="card-title">{{anime.title}}</h5>
             </a>
-            <div v-if="anime.synopsis.length > 110">
+            <div v-if="anime.synopsis.length > 10">
               <p class="card-text">{{anime.synopsis.substring(0,110)}} ...</p>
             </div>
             <div v-else>
@@ -26,22 +47,29 @@
   </div>
 </template>
 
+
 <script>
 import axios from "axios";
-import SubHeader from "./core/SubHeader.vue";
+import authStore from "../store/auth.js";
 
 export default {
   name: "AnimeList",
 
-  components: {
-    SubHeader
-  },
+  components: {},
   data() {
     return {
-      animes: {}
+      animes: {},
+      isLogged: false,
+      isAdmin: false,
+      category: {},
     };
   },
-  created() {},
+  created() {
+    this.isLogged = authStore.checkIfIsLogged();
+    if (this.isLogged) {
+      this.isAdmin = authStore.isAdmin();
+    }
+  },
 
   mounted() {
     this.loadAnimes(this.$route.params.id);
@@ -50,9 +78,14 @@ export default {
   methods: {
     loadAnimes(id) {
       this.isLoading = true;
-      axios.get(`https://localhost:44331/api/anime/${id}/100`).then(data => {
-        this.animes = data.data;
-        this.isLoading = false;
+
+      axios.get(`https://localhost:44331/api/Categories/${id}`).then(data => {
+        this.category = data.data;
+
+        axios.get(`https://localhost:44331/api/anime/${id}/100`).then(data => {
+          this.animes = data.data;
+          this.isLoading = false;
+        });
       });
     }
   }

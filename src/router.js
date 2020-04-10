@@ -8,6 +8,8 @@ import AnimeList from './components/AnimeList.vue';
 import AnimeDetails from './components/AnimeDetails.vue';
 import TopAnime from './components/TopAnime.vue';
 import Categories from './components/Categories.vue';
+import User from './components/User.vue';
+import NotFound from './components/404.vue';
 
 const router = new VueRouter({
     mode: 'history',
@@ -29,7 +31,7 @@ const router = new VueRouter({
             component: Register
         },
         {
-            path: '/create-anime',
+            path: '/create-anime/:id',
             component: CreateAnime
         },
         {
@@ -51,6 +53,14 @@ const router = new VueRouter({
         {
             path: '/categories',
             component: Categories,
+        }, 
+        {
+            path: '/user/:id',
+            component: User
+        }, 
+        {
+            path: '*',
+            component: NotFound
         }
     ]
 });

@@ -7,7 +7,7 @@
       crossorigin="anonymous"
     />
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="/">Index</a>
+      <a class="navbar-brand" href="/">ViewAnime</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -40,7 +40,7 @@
         <a class="nav-item nav-link active" href="/register">Sign Up</a>
       </div>
       <div v-else class="navbar-nav navbar-right">
-        <a class="nav-item nav-link active">{{username}}</a>
+        <a v-bind:href="'/user/' + id" class="nav-item nav-link active">{{username}}</a>
         <a @click="logout" class="nav-item nav-link active">Logout</a>
       </div>
     </nav>
@@ -56,22 +56,24 @@ export default {
       isLogged: false,
       username: "",
       isAdmin: false,
-    }
+      id: 0
+    };
   },
   created() {
     this.isLogged = authStore.checkIfIsLogged();
-    if(this.isLogged) {
+    if (this.isLogged) {
       this.username = authStore.getUsername();
       this.isAdmin = authStore.isAdmin();
+      this.id = authStore.getUserId();
     }
   },
   methods: {
     logout() {
       this.$router.push("/");
-      authStore.clearUser(); 
+      authStore.clearUser();
       this.isLogged = false;
     }
-  },
+  }
 };
 </script>
 
