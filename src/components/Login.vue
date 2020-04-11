@@ -3,7 +3,7 @@
     <sub-header message="Login to ViewAnime"></sub-header>
     <div class="card container">
       <article class="card-body">
-        <a href class="float-right btn btn-outline-primary">Sign up</a>
+        <a href="/register" class="float-right btn btn-outline-primary">Sign up</a>
         <h4 class="card-title mb-4 mt-1">Sign in</h4>
         <form @submit.prevent="login">
           <div class="form-group">
@@ -18,7 +18,7 @@
             <button class="btn btn-primary btn-block">Login</button>
           </div>
           <div v-if="error">
-            <p>Invalid email or password!</p>
+            <p  class="text-danger">Invalid email or password!</p>
           </div>
         </form>
       </article>

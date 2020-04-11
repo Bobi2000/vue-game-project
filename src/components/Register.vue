@@ -3,7 +3,7 @@
     <sub-header message="Register to ViewAnime"></sub-header>
     <div class="card container">
       <article class="card-body">
-        <a href class="float-right btn btn-outline-primary">Sign in</a>
+        <a href="/login" class="float-right btn btn-outline-primary">Sign in</a>
         <h4 class="card-title mb-4 mt-1">Sign up</h4>
         <form @submit.prevent="submitHandler">
           <div class="form-group">

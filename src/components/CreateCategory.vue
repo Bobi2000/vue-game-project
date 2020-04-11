@@ -44,10 +44,14 @@ export default {
     if (!authStore.checkIfIsLogged()) {
       this.$router.push("/");
     }
+    if (!authStore.isAdmin()) {
+      this.$router.push("/");
+    }
   },
   methods: {
     submitHandler() {
       const { title } = this;
+
       axios
         .post(`https://localhost:44331/api/Categories`, { title })
         .then(() => {

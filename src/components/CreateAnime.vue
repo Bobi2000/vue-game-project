@@ -9,11 +9,23 @@
         </div>
         <div class="form-group">
           <label>URL Thumbnail</label>
-          <input v-model="thumbnailURL"  name class="form-control" placeholder="URL Thumbnail" type="text" />
+          <input
+            v-model="thumbnailURL"
+            name
+            class="form-control"
+            placeholder="URL Thumbnail"
+            type="text"
+          />
         </div>
         <div class="form-group">
           <label>URL Trailer</label>
-          <input v-model="trailerURL" name class="form-control" placeholder="URL Thumbnail" type="text" />
+          <input
+            v-model="trailerURL"
+            name
+            class="form-control"
+            placeholder="URL Thumbnail"
+            type="text"
+          />
         </div>
         <div class="form-group">
           <label>Synopsis</label>
@@ -28,17 +40,26 @@
 </template>
 
 <script>
+import authStore from "./../store/auth.js";
 import axios from "axios";
 
 export default {
   name: "CreateAnime",
   data() {
     return {
-      title: '',
-      thumbnailURL: '',
-      trailerURL: '',
-      synopsis: '',
+      title: "",
+      thumbnailURL: "",
+      trailerURL: "",
+      synopsis: ""
     };
+  },
+  created() {
+    if (!authStore.checkIfIsLogged()) {
+      this.$router.push("/");
+    }
+    if (!authStore.isAdmin()) {
+      this.$router.push("/");
+    }
   },
   methods: {
     submitHandler() {
@@ -46,7 +67,13 @@ export default {
       let categoryId = Number(this.$route.params.id);
       console.log(categoryId);
       axios
-        .post(`https://localhost:44331/api/anime`, { title, thumbnailURL, trailerURL, synopsis, categoryId })
+        .post(`https://localhost:44331/api/anime`, {
+          title,
+          thumbnailURL,
+          trailerURL,
+          synopsis,
+          categoryId
+        })
         .then(() => {
           this.$router.push("/anime/" + categoryId);
         });

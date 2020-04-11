@@ -65,10 +65,10 @@
 </template>
 
 <script>
-import axios from "axios";
 import SubHeader from "./core/SubHeader.vue";
 import StarRating from "vue-star-rating";
 import authStore from "../store/auth.js";
+import UserService from "./services/user.js";
 
 export default {
   name: "User",
@@ -81,20 +81,17 @@ export default {
   data() {
     return {
       rankedAnimes: {},
-      username: "",
+      username: ""
     };
   },
   created() {
-    this.loadRankingAnimes(this.$route.params.id);
+    //this.loadRankingAnimes(this.$route.params.id);
+    const restUserService = new UserService();
+    restUserService.loadRankingAnimes(this.$route.params.id).then(data => {
+      this.rankedAnimes = data.data;
+    });
     this.username = authStore.getUsername();
   },
-  methods: {
-    loadRankingAnimes(id) {
-      axios.get(`https://localhost:44331/api/animeratings/${id}`).then(data => {
-        this.rankedAnimes = data.data;
-      });
-    }
-  }
 };
 </script>
 
