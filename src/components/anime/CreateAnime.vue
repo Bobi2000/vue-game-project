@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import authStore from "../../store/auth.js";
+//import authStore from "../../store/auth.js";
 import animeService from "../services/anime.js";
 const restAnimeService = new animeService();
 
@@ -55,12 +55,12 @@ export default {
     };
   },
   created() {
-    if (!authStore.checkIfIsLogged()) {
+    /*if (!authStore.checkIfIsLogged()) {
       this.$router.push("/");
     }
     if (!authStore.isAdmin()) {
       this.$router.push("/");
-    }
+    }*/
   },
   methods: {
     submitHandler() {

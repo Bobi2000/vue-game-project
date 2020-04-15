@@ -10,6 +10,7 @@ import Home from './components/Home.vue';
 import Login from './components/user/authentication/Login.vue';
 import Register from './components/user/authentication/Register.vue';
 import User from './components/user/User.vue';
+import authStore from './store/auth.js';
 
 const router = new VueRouter({
     mode: 'history',
@@ -24,19 +25,53 @@ const router = new VueRouter({
         },
         {
             path: '/login',
-            component: Login
+            component: Login,
+            beforeEnter: (to, from, next) => {
+                if (authStore.checkIfIsLogged()) {
+                    next(false);
+                } else {
+                    next();
+                }
+            }
         },
         {
             path: '/register',
-            component: Register
+            component: Register,
+            beforeEnter: (to, from, next) => {
+                if (authStore.checkIfIsLogged()) {
+                    next(false);
+                } else {
+                    next();
+                }
+            }
         },
         {
             path: '/create-anime/:id',
-            component: CreateAnime
+            component: CreateAnime,
+            beforeEnter: (to, from, next) => {
+                if (!authStore.checkIfIsLogged()) {
+                    next(false);
+                }
+                else if (!authStore.isAdmin()) {
+                    next(false);
+                } else {
+                    next();
+                }
+            }
         },
         {
             path: '/create-category',
             component: CreateCategory,
+            beforeEnter: (to, from, next) => {
+                if (!authStore.checkIfIsLogged()) {
+                    next(false);
+                }
+                else if (!authStore.isAdmin()) {
+                    next(false);
+                } else {
+                    next();
+                }
+            }
         },
         {
             path: '/anime/:id',
