@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import authStore from "./../store/auth.js";
+import authStore from "../../store/auth.js";
 import axios from "axios";
 
 export default {

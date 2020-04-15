@@ -13,7 +13,7 @@
 
 <script>
 import axios from "axios";
-import SubHeader from "./core/SubHeader.vue";
+import SubHeader from "../core/SubHeader.vue";
 
 export default {
   name: "Categories",

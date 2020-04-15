@@ -1,6 +1,6 @@
 <template>
   <div>
-    <sub-header message="Top Anime"></sub-header>
+    <sub-header v-bind:message=" username + `'s Rated  Animes`"></sub-header>
     <div class="container">
       <table class="table">
         <thead>
@@ -65,12 +65,13 @@
 </template>
 
 <script>
-import axios from "axios";
-import SubHeader from "./core/SubHeader.vue";
+import SubHeader from "../core/SubHeader.vue";
 import StarRating from "vue-star-rating";
+import authStore from "../../store/auth.js";
+import UserService from "../services/user.js";
 
 export default {
-  name: "TopAnime",
+  name: "User",
 
   components: {
     SubHeader,
@@ -79,19 +80,18 @@ export default {
 
   data() {
     return {
-      rankedAnimes: {}
+      rankedAnimes: {},
+      username: ""
     };
   },
   created() {
-    this.loadRankingAnimes();
+    //this.loadRankingAnimes(this.$route.params.id);
+    const restUserService = new UserService();
+    restUserService.loadRankingAnimes(this.$route.params.id).then(data => {
+      this.rankedAnimes = data.data;
+    });
+    this.username = authStore.getUsername();
   },
-  methods: {
-    loadRankingAnimes() {
-      axios.get(`https://localhost:44331/api/animeratings/`).then(data => {
-        this.rankedAnimes = data.data;
-      });
-    }
-  }
 };
 </script>
 

@@ -28,8 +28,8 @@
 
 <script>
 import axios from "axios";
-import SubHeader from "./core/SubHeader.vue";
-import authStore from "../store/auth.js";
+import SubHeader from "../../core/SubHeader.vue";
+import authStore from "../../../store/auth.js";
 
 export default {
   name: "Login",

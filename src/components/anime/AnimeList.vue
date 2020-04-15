@@ -50,7 +50,7 @@
 
 <script>
 import axios from "axios";
-import authStore from "../store/auth.js";
+import authStore from "../../store/auth.js";
 
 export default {
   name: "AnimeList",

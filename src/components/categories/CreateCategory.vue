@@ -25,8 +25,8 @@
 </template>
 
 <script>
-import SubHeader from "./core/SubHeader.vue";
-import authStore from "./../store/auth.js";
+import SubHeader from "../core/SubHeader.vue";
+import authStore from "../../store/auth.js";
 import axios from "axios";
 
 export default {

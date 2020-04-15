@@ -1,15 +1,15 @@
 import VueRouter from 'vue-router';
-import Home from './components/Home.vue';
-import Login from './components/Login.vue';
-import Register from './components/Register.vue';
-import CreateAnime from './components/CreateAnime.vue';
-import CreateCategory from './components/CreateCategory.vue';
-import AnimeList from './components/AnimeList.vue';
-import AnimeDetails from './components/AnimeDetails.vue';
-import TopAnime from './components/TopAnime.vue';
-import Categories from './components/Categories.vue';
-import User from './components/User.vue';
 import NotFound from './components/404.vue';
+import AnimeDetails from './components/anime/AnimeDetails.vue';
+import AnimeList from './components/anime/AnimeList.vue';
+import CreateAnime from './components/anime/CreateAnime.vue';
+import TopAnime from './components/anime/TopAnime.vue';
+import Categories from './components/categories/Categories.vue'
+import CreateCategory from './components/categories/CreateCategory.vue';
+import Home from './components/Home.vue';
+import Login from './components/user/authentication/Login.vue';
+import Register from './components/user/authentication/Register.vue';
+import User from './components/user/User.vue';
 
 const router = new VueRouter({
     mode: 'history',
@@ -40,7 +40,7 @@ const router = new VueRouter({
         },
         {
             path: '/anime/:id',
-            component: AnimeList
+            component: AnimeList,
         },
         {
             path: '/anime-details/:id',
@@ -53,11 +53,11 @@ const router = new VueRouter({
         {
             path: '/categories',
             component: Categories,
-        }, 
+        },
         {
             path: '/user/:id',
             component: User
-        }, 
+        },
         {
             path: '*',
             component: NotFound

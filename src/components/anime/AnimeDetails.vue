@@ -35,7 +35,6 @@
             v-bind:max-rating="10"
             v-bind:star-size="34"
           ></star-rating>
-
           <div v-if="!ratings.hasUserVoted && isUserLogged">
             <h2>Rate:</h2>
             <star-rating
@@ -63,9 +62,9 @@
 
 <script>
 import axios from "axios";
-import SubHeader from "./core/SubHeader.vue";
+import SubHeader from "../core/SubHeader.vue";
 import StarRating from "vue-star-rating";
-import authStore from "../store/auth.js";
+import authStore from "../../store/auth.js";
 
 export default {
   name: "AnimeDetails",

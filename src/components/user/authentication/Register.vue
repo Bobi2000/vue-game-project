@@ -92,7 +92,7 @@ import {
 } from "vuelidate/lib/validators";
 import { helpers } from "vuelidate/lib/validators";
 import axios from "axios";
-import SubHeader from "./core/SubHeader.vue";
+import SubHeader from "../../core/SubHeader.vue";
 
 const alphanumeric = helpers.regex("alphanumeric", /^[a-zA-Z0-9]*$/);
 
