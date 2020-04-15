@@ -1,40 +1,42 @@
 <template>
-  <div>
-    <sub-header message="Home Page"></sub-header>
-    <div class="container">
-      <div v-for="category in animes" :key="category.data[0].categoryTitle">
-        <article>
-          <hr />
-          <a class="animeLink" v-bind:href="'/anime/' + category.data[0].categoryId">
-            <h4 class="animeLink">{{category.data[0].categoryTitle}}</h4>
-          </a>
-          <hr />
+  <transition name="slide-fade">
+    <div v-if="show">
+      <sub-header message="Home Page"></sub-header>
+      <div class="container">
+        <div v-for="category in animes" :key="category.data[0].categoryTitle">
+          <article>
+            <hr />
+            <a class="animeLink" v-bind:href="'/anime/' + category.data[0].categoryId">
+              <h4 class="animeLink">{{category.data[0].categoryTitle}}</h4>
+            </a>
+            <hr />
 
-          <div class="card-deck">
-            <div
-              v-for="anime in category.data"
-              :key="anime.id"
-              class="card bg-light text-white hover11"
-            >
-              <a class="animeLink" v-bind:href="'anime-details/' + anime.id">
-                <p class="card-text">{{anime.title}}</p>
-                <figure>
-                  <img
-                    width="196"
-                    height="300"
-                    class="card-img image"
-                    v-bind:src="anime.thumbnailURL"
-                    alt="Card image"
-                  />
-                  <div class="card-img-overlay"></div>
-                </figure>
-              </a>
+            <div class="card-deck">
+              <div
+                v-for="anime in category.data"
+                :key="anime.id"
+                class="card bg-light text-white hover11"
+              >
+                <a class="animeLink" v-bind:href="'anime-details/' + anime.id">
+                  <p class="card-text">{{anime.title}}</p>
+                  <figure>
+                    <img
+                      width="196"
+                      height="300"
+                      class="card-img image"
+                      v-bind:src="anime.thumbnailURL"
+                      alt="Card image"
+                    />
+                    <div class="card-img-overlay"></div>
+                  </figure>
+                </a>
+              </div>
             </div>
-          </div>
-        </article>
+          </article>
+        </div>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -51,7 +53,8 @@ export default {
   },
   data() {
     return {
-      animes: []
+      animes: [],
+      show: false
     };
   },
   created() {
@@ -66,6 +69,7 @@ export default {
         this.animes.push(data);
         restAnimeService.loadSummerAnime().then(data => {
           this.animes.push(data);
+          this.show = true;
         });
       });
     }
@@ -96,5 +100,17 @@ figure:hover + span {
 .animeLink {
   text-decoration: none;
   color: black;
+}
+
+.slide-fade-enter-active {
+  transition: all 1s ease;
+}
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
 }
 </style>

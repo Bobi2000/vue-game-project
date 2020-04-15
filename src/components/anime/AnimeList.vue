@@ -1,5 +1,6 @@
 <template>
-  <div>
+<transition name="slide-fade">
+  <div v-if="show">
     <div>
       <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -49,6 +50,7 @@
       </div>
     </div>
   </div>
+  </transition>
 </template>
 
 
@@ -67,7 +69,8 @@ export default {
       animes: {},
       isLogged: false,
       isAdmin: false,
-      category: {}
+      category: {},
+      show: false
     };
   },
   created() {
@@ -83,14 +86,13 @@ export default {
 
   methods: {
     loadAnimes(id) {
-      this.isLoading = true;
 
       restCategoryService.getCategory(id).then(data => {
         this.category = data.data;
 
         restCategoryService.getAnimesByCategory(id).then(data => {
           this.animes = data.data;
-          this.isLoading = false;
+          this.show = true;
         });
       });
     }
@@ -121,5 +123,17 @@ figure:hover + span {
 .animeLink {
   text-decoration: none;
   color: black;
+}
+
+.slide-fade-enter-active {
+  transition: all 1s ease;
+}
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
 }
 </style>

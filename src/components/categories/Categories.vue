@@ -1,17 +1,19 @@
 <template>
-  <div>
-    <sub-header message="Categories"></sub-header>
-    <div class="container">
-      <br />
-      <br />
-      <div v-for="category in categories" :key="category.id">
-        <a class="animeLink" v-bind:href="'/anime/' + category.id">
-          <h5>{{category.title}}</h5>
-        </a>
+  <transition name="slide-fade">
+    <div v-if="show">
+      <sub-header message="Categories"></sub-header>
+      <div class="container">
         <br />
+        <br />
+        <div v-for="category in categories" :key="category.id">
+          <a class="animeLink" v-bind:href="'/anime/' + category.id">
+            <h5>{{category.title}}</h5>
+          </a>
+          <br />
+        </div>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -28,7 +30,8 @@ export default {
 
   data() {
     return {
-      categories: {}
+      categories: {},
+      show: false
     };
   },
   created() {},
@@ -39,10 +42,9 @@ export default {
 
   methods: {
     loadCategories() {
-      this.isLoading = true;
       restCategoriesService.loadCategories().then(data => {
         this.categories = data.data;
-        this.isLoading = false;
+        this.show = true;
       });
     }
   }
@@ -72,5 +74,17 @@ figure:hover + span {
 .animeLink {
   text-decoration: none;
   color: black;
+}
+
+.slide-fade-enter-active {
+  transition: all 1s ease;
+}
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
 }
 </style>
