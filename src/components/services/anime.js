@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default class AnimeService {
     setRating(rating, userId, animeId) {
-        axios
+        return axios
             .post(`https://localhost:44331/api/AnimeRatings`, {
                 rating,
                 userId,
@@ -18,13 +18,13 @@ export default class AnimeService {
     }
 
     getAnimeUserRating(id, userId) {
-        axios
+        return axios
             .get(`https://localhost:44331/api/animeratings/${id}/${userId}`)
     }
 
     getAnimeRating(id) {
         let numberId = -1;
-        axios
+        return axios
             .get(`https://localhost:44331/api/animeratings/${id}/${numberId}/${numberId}`)
     }
 
@@ -41,7 +41,7 @@ export default class AnimeService {
     }
 
     createAnime(title, thumbnailURL, trailerURL, synopsis, categoryId, $router) {
-        axios
+        return axios
             .post(`https://localhost:44331/api/anime`, {
                 title,
                 thumbnailURL,
