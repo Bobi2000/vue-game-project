@@ -27,7 +27,9 @@
 <script>
 import SubHeader from "../core/SubHeader.vue";
 import authStore from "../../store/auth.js";
-import axios from "axios";
+
+import categoryService from "../services/categories.js";
+const restCategoryService = new categoryService();
 
 export default {
   name: "CreateCategory",
@@ -52,9 +54,7 @@ export default {
     submitHandler() {
       const { title } = this;
 
-      axios
-        .post(`https://localhost:44331/api/Categories`, { title })
-        .then(() => {
+      restCategoryService.createAnimeCategory(title).then(() => {
           this.$router.push("/");
         });
     }

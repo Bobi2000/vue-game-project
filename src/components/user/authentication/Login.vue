@@ -18,7 +18,7 @@
             <button class="btn btn-primary btn-block">Login</button>
           </div>
           <div v-if="error">
-            <p  class="text-danger">Invalid email or password!</p>
+            <p class="text-danger">Invalid email or password!</p>
           </div>
         </form>
       </article>
@@ -27,9 +27,11 @@
 </template>
 
 <script>
-import axios from "axios";
 import SubHeader from "../../core/SubHeader.vue";
 import authStore from "../../../store/auth.js";
+import UserService from "../../services/user";
+
+const restUserService = new UserService();
 
 export default {
   name: "Login",
@@ -44,19 +46,16 @@ export default {
     login() {
       const { email, password } = this;
 
-      axios
-        .get(`https://localhost:44331/api/animeusers/${email}/${password}`)
-        .then(res => {
-          if (res.status === 200) {
-            authStore.setUser(res.data);
-            this.$router.push("/");
-            location.reload();
-            return;
-          }
-        });
-        
+      restUserService.login(email, password).then(res => {
+        if (res.status === 200) {
+          authStore.setUser(res.data);
+          this.$router.push("/");
+          location.reload();
+          return;
+        }
+      });
 
-          this.error = true;
+      this.error = true;
     }
   },
   components: {

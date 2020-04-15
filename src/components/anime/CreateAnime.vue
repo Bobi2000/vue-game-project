@@ -41,7 +41,8 @@
 
 <script>
 import authStore from "../../store/auth.js";
-import axios from "axios";
+import animeService from "../services/anime.js";
+const restAnimeService = new animeService();
 
 export default {
   name: "CreateAnime",
@@ -65,18 +66,14 @@ export default {
     submitHandler() {
       const { title, thumbnailURL, trailerURL, synopsis } = this;
       let categoryId = Number(this.$route.params.id);
-      console.log(categoryId);
-      axios
-        .post(`https://localhost:44331/api/anime`, {
-          title,
-          thumbnailURL,
-          trailerURL,
-          synopsis,
-          categoryId
-        })
-        .then(() => {
-          this.$router.push("/anime/" + categoryId);
-        });
+      restAnimeService.createAnime(
+        title,
+        thumbnailURL,
+        trailerURL,
+        synopsis,
+        categoryId,
+        this.$router,
+      );
     }
   }
 };

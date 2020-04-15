@@ -61,10 +61,12 @@
 </template>
 
 <script>
-import axios from "axios";
 import SubHeader from "../core/SubHeader.vue";
 import StarRating from "vue-star-rating";
 import authStore from "../../store/auth.js";
+import AnimeService from "../services/anime.js";
+
+const restAnimeService = new AnimeService();
 
 export default {
   name: "AnimeDetails",
@@ -91,27 +93,21 @@ export default {
   methods: {
     loadAnimes(id) {
       this.isLoading = true;
-      axios.get(`https://localhost:44331/api/anime/${id}`).then(data => {
+
+      restAnimeService.getAnime(id).then(data => {
         this.anime = data.data;
 
         let isLogged = authStore.checkIfIsLogged();
         if (isLogged) {
           this.isUserLogged = true;
           let userId = authStore.getUserId();
-          axios
-            .get(`https://localhost:44331/api/animeratings/${id}/${userId}`)
-            .then(data => {
-              this.ratings = data.data;
-            });
+          restAnimeService.getAnimeUserRating(id, userId).then(data => {
+            this.ratings = data.data;
+          });
         } else {
-          let numberId = -1;
-          axios
-            .get(
-              `https://localhost:44331/api/animeratings/${id}/${numberId}/${numberId}`
-            )
-            .then(data => {
-              this.notLoggedInAvrRating = data.data;
-            });
+          restAnimeService.getAnimeRating(id).then(data => {
+            this.notLoggedInAvrRating = data.data;
+          });
         }
 
         this.isLoading = false;
@@ -122,16 +118,7 @@ export default {
       let animeId = Number(this.$route.params.id);
       let userId = Number(authStore.getUserId());
 
-      axios
-        .post(`https://localhost:44331/api/AnimeRatings`, {
-          rating,
-          userId,
-          animeId
-        })
-        .then(() => {
-          location.reload();
-        });
-      //alert("You voted " + this.rating);
+      restAnimeService.setRating(rating, userId, animeId);
     }
   }
 };

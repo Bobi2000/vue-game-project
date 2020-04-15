@@ -19,7 +19,13 @@
               <a class="animeLink" v-bind:href="'anime-details/' + anime.id">
                 <p class="card-text">{{anime.title}}</p>
                 <figure>
-                  <img width="196" height="300" class="card-img image" v-bind:src="anime.thumbnailURL" alt="Card image" />
+                  <img
+                    width="196"
+                    height="300"
+                    class="card-img image"
+                    v-bind:src="anime.thumbnailURL"
+                    alt="Card image"
+                  />
                   <div class="card-img-overlay"></div>
                 </figure>
               </a>
@@ -27,212 +33,15 @@
           </div>
         </article>
       </div>
-
-      <!-- <article>
-        <a href="#">Spring 2020 Anime</a>
-        <hr />
-        <div class="card-deck">
-          <div class="card bg-dark text-white">
-            <img
-              class="card-img"
-              src="https://cdn.myanimelist.net/r/160x220/images/anime/1380/106565.webp?s=0c830cdc9d46316ce7dfc579ebd8cdfd"
-              alt="Card image"
-            />
-            <div class="card-img-overlay">
-              <h5 class="card-title">Glepnir</h5>
-            </div>
-          </div>
-          <div class="card bg-dark text-white">
-            <img
-              class="card-img"
-              src="https://cdn.myanimelist.net/r/160x220/images/anime/1380/106565.webp?s=0c830cdc9d46316ce7dfc579ebd8cdfd"
-              alt="Card image"
-            />
-            <div class="card-img-overlay">
-              <h5 class="card-title">Glepnir</h5>
-            </div>
-          </div>
-          <div class="card bg-dark text-white">
-            <img
-              class="card-img"
-              src="https://cdn.myanimelist.net/r/160x220/images/anime/1380/106565.webp?s=0c830cdc9d46316ce7dfc579ebd8cdfd"
-              alt="Card image"
-            />
-            <div class="card-img-overlay">
-              <h5 class="card-title">Glepnir</h5>
-            </div>
-          </div>
-          <div class="card bg-dark text-white">
-            <img
-              class="card-img"
-              src="https://cdn.myanimelist.net/r/160x220/images/anime/1380/106565.webp?s=0c830cdc9d46316ce7dfc579ebd8cdfd"
-              alt="Card image"
-            />
-            <div class="card-img-overlay">
-              <h5 class="card-title">Glepnir</h5>
-            </div>
-          </div>
-          <div class="card bg-dark text-white">
-            <img
-              class="card-img"
-              src="https://cdn.myanimelist.net/r/160x220/images/anime/1380/106565.webp?s=0c830cdc9d46316ce7dfc579ebd8cdfd"
-              alt="Card image"
-            />
-            <div class="card-img-overlay">
-              <h5 class="card-title">Glepnir</h5>
-            </div>
-          </div>
-          <div class="card bg-dark text-white">
-            <img
-              class="card-img"
-              src="https://cdn.myanimelist.net/r/160x220/images/anime/1380/106565.webp?s=0c830cdc9d46316ce7dfc579ebd8cdfd"
-              alt="Card image"
-            />
-            <div class="card-img-overlay">
-              <h5 class="card-title">Glepnir</h5>
-            </div>
-          </div>
-        </div>
-      </article>
-      <article>
-        <a href="#">Spring 2020 Anime</a>
-        <hr />
-        <div class="card-deck">
-          <div class="card bg-dark text-white">
-            <img
-              class="card-img"
-              src="https://cdn.myanimelist.net/r/160x220/images/anime/1380/106565.webp?s=0c830cdc9d46316ce7dfc579ebd8cdfd"
-              alt="Card image"
-            />
-            <div class="card-img-overlay">
-              <h5 class="card-title">Glepnir</h5>
-            </div>
-          </div>
-          <div class="card bg-dark text-white">
-            <img
-              class="card-img"
-              src="https://cdn.myanimelist.net/r/160x220/images/anime/1380/106565.webp?s=0c830cdc9d46316ce7dfc579ebd8cdfd"
-              alt="Card image"
-            />
-            <div class="card-img-overlay">
-              <h5 class="card-title">Glepnir</h5>
-            </div>
-          </div>
-          <div class="card bg-dark text-white">
-            <img
-              class="card-img"
-              src="https://cdn.myanimelist.net/r/160x220/images/anime/1380/106565.webp?s=0c830cdc9d46316ce7dfc579ebd8cdfd"
-              alt="Card image"
-            />
-            <div class="card-img-overlay">
-              <h5 class="card-title">Glepnir</h5>
-            </div>
-          </div>
-          <div class="card bg-dark text-white">
-            <img
-              class="card-img"
-              src="https://cdn.myanimelist.net/r/160x220/images/anime/1380/106565.webp?s=0c830cdc9d46316ce7dfc579ebd8cdfd"
-              alt="Card image"
-            />
-            <div class="card-img-overlay">
-              <h5 class="card-title">Glepnir</h5>
-            </div>
-          </div>
-          <div class="card bg-dark text-white">
-            <img
-              class="card-img"
-              src="https://cdn.myanimelist.net/r/160x220/images/anime/1380/106565.webp?s=0c830cdc9d46316ce7dfc579ebd8cdfd"
-              alt="Card image"
-            />
-            <div class="card-img-overlay">
-              <h5 class="card-title">Glepnir</h5>
-            </div>
-          </div>
-          <div class="card bg-dark text-white">
-            <img
-              class="card-img"
-              src="https://cdn.myanimelist.net/r/160x220/images/anime/1380/106565.webp?s=0c830cdc9d46316ce7dfc579ebd8cdfd"
-              alt="Card image"
-            />
-            <div class="card-img-overlay">
-              <h5 class="card-title">Glepnir</h5>
-            </div>
-          </div>
-        </div>
-      </article>
-      <article>
-        <a href="#">Spring 2020 Anime</a>
-        <hr />
-        <div class="card-deck">
-          <div class="card bg-dark text-white">
-            <img
-              class="card-img"
-              src="https://cdn.myanimelist.net/r/160x220/images/anime/1380/106565.webp?s=0c830cdc9d46316ce7dfc579ebd8cdfd"
-              alt="Card image"
-            />
-            <div class="card-img-overlay">
-              <h5 class="card-title">Glepnir</h5>
-            </div>
-          </div>
-          <div class="card bg-dark text-white">
-            <img
-              class="card-img"
-              src="https://cdn.myanimelist.net/r/160x220/images/anime/1380/106565.webp?s=0c830cdc9d46316ce7dfc579ebd8cdfd"
-              alt="Card image"
-            />
-            <div class="card-img-overlay">
-              <h5 class="card-title">Glepnir</h5>
-            </div>
-          </div>
-          <div class="card bg-dark text-white">
-            <img
-              class="card-img"
-              src="https://cdn.myanimelist.net/r/160x220/images/anime/1380/106565.webp?s=0c830cdc9d46316ce7dfc579ebd8cdfd"
-              alt="Card image"
-            />
-            <div class="card-img-overlay">
-              <h5 class="card-title">Glepnir</h5>
-            </div>
-          </div>
-          <div class="card bg-dark text-white">
-            <img
-              class="card-img"
-              src="https://cdn.myanimelist.net/r/160x220/images/anime/1380/106565.webp?s=0c830cdc9d46316ce7dfc579ebd8cdfd"
-              alt="Card image"
-            />
-            <div class="card-img-overlay">
-              <h5 class="card-title">Glepnir</h5>
-            </div>
-          </div>
-          <div class="card bg-dark text-white">
-            <img
-              class="card-img"
-              src="https://cdn.myanimelist.net/r/160x220/images/anime/1380/106565.webp?s=0c830cdc9d46316ce7dfc579ebd8cdfd"
-              alt="Card image"
-            />
-            <div class="card-img-overlay">
-              <h5 class="card-title">Glepnir</h5>
-            </div>
-          </div>
-          <div class="card bg-dark text-white">
-            <img
-              class="card-img"
-              src="https://cdn.myanimelist.net/r/160x220/images/anime/1380/106565.webp?s=0c830cdc9d46316ce7dfc579ebd8cdfd"
-              alt="Card image"
-            />
-            <div class="card-img-overlay">
-              <h5 class="card-title">Glepnir</h5>
-            </div>
-          </div>
-        </div>
-      </article>-->
     </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
 import SubHeader from "./core/SubHeader.vue";
+import AnimeService from "./services/anime";
+
+const restAnimeService = new AnimeService();
 
 export default {
   name: "Home",
@@ -242,7 +51,6 @@ export default {
   },
   data() {
     return {
-      isLoading: false,
       animes: []
     };
   },
@@ -254,13 +62,10 @@ export default {
 
   methods: {
     loadAnimes() {
-      this.isLoading = true;
-      axios.get(`https://localhost:44331/api/anime/1/5`).then(data => {
+      restAnimeService.loadSeasonalAnime().then(data => {
         this.animes.push(data);
-
-        axios.get(`https://localhost:44331/api/anime/2/5`).then(data => {
+        restAnimeService.loadSummerAnime().then(data => {
           this.animes.push(data);
-          this.isLoading = false;
         });
       });
     }

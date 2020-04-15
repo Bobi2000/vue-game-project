@@ -65,9 +65,10 @@
 </template>
 
 <script>
-import axios from "axios";
 import SubHeader from "../core/SubHeader.vue";
 import StarRating from "vue-star-rating";
+import animeService from "../services/anime.js";
+const restAnimeService = new animeService();
 
 export default {
   name: "TopAnime",
@@ -87,7 +88,7 @@ export default {
   },
   methods: {
     loadRankingAnimes() {
-      axios.get(`https://localhost:44331/api/animeratings/`).then(data => {
+      restAnimeService.topAnime().then(data => {
         this.rankedAnimes = data.data;
       });
     }

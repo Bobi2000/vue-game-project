@@ -11,7 +11,11 @@
             </div>
           </div>
           <div class="navbar-nav navbar-right">
-            <a v-if="isLogged && isAdmin" class="nav-item nav-link active" v-bind:href="'/create-anime/' + category.id">
+            <a
+              v-if="isLogged && isAdmin"
+              class="nav-item nav-link active"
+              v-bind:href="'/create-anime/' + category.id"
+            >
               <h5>Add Anime</h5>
             </a>
           </div>
@@ -49,8 +53,10 @@
 
 
 <script>
-import axios from "axios";
 import authStore from "../../store/auth.js";
+import CategoryService from "../services/categories";
+
+const restCategoryService = new CategoryService();
 
 export default {
   name: "AnimeList",
@@ -61,7 +67,7 @@ export default {
       animes: {},
       isLogged: false,
       isAdmin: false,
-      category: {},
+      category: {}
     };
   },
   created() {
@@ -79,10 +85,10 @@ export default {
     loadAnimes(id) {
       this.isLoading = true;
 
-      axios.get(`https://localhost:44331/api/Categories/${id}`).then(data => {
+      restCategoryService.getCategory(id).then(data => {
         this.category = data.data;
 
-        axios.get(`https://localhost:44331/api/anime/${id}/100`).then(data => {
+        restCategoryService.getAnimesByCategory(id).then(data => {
           this.animes = data.data;
           this.isLoading = false;
         });

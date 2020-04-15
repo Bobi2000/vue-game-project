@@ -1,19 +1,23 @@
 <template>
   <div>
-      <sub-header message="Categories"></sub-header>
-      <div class="container"> 
-          <br><br>
-          <div v-for="category in categories" :key="category.id">
-              <a class="animeLink" v-bind:href="'/anime/' + category.id"><h5>{{category.title}}</h5></a>
-              <br>
-          </div>
+    <sub-header message="Categories"></sub-header>
+    <div class="container">
+      <br />
+      <br />
+      <div v-for="category in categories" :key="category.id">
+        <a class="animeLink" v-bind:href="'/anime/' + category.id">
+          <h5>{{category.title}}</h5>
+        </a>
+        <br />
       </div>
+    </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
 import SubHeader from "../core/SubHeader.vue";
+import categoriesService from "../services/categories.js";
+const restCategoriesService = new categoriesService();
 
 export default {
   name: "Categories",
@@ -36,7 +40,7 @@ export default {
   methods: {
     loadCategories() {
       this.isLoading = true;
-      axios.get(`https://localhost:44331/api/Categories`).then(data => {
+      restCategoriesService.loadCategories().then(data => {
         this.categories = data.data;
         this.isLoading = false;
       });

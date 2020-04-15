@@ -91,10 +91,11 @@ import {
   maxLength
 } from "vuelidate/lib/validators";
 import { helpers } from "vuelidate/lib/validators";
-import axios from "axios";
 import SubHeader from "../../core/SubHeader.vue";
+import UserService from "../../services/user";
 
 const alphanumeric = helpers.regex("alphanumeric", /^[a-zA-Z0-9]*$/);
+const restUserService = new UserService();
 
 export default {
   mixins: [validationMixin],
@@ -103,7 +104,7 @@ export default {
       username: "",
       email: "",
       password: "",
-      rePassword: "",
+      rePassword: ""
     };
   },
   validations: {
@@ -131,30 +132,15 @@ export default {
   methods: {
     submitHandler() {
       this.$v.$touch();
-      if (this.$v.$invalid) { return; }
+      if (this.$v.$invalid) {
+        return;
+      }
 
       const { username, email, password } = this;
-      axios.post(`https://localhost:44331/api/animeusers`, { username, email, password }).then(() => {
+      restUserService.register(username, email, password).then(() => {
         this.$router.push("/login");
       });
-    },
-    /*register() {
-      const { email, password } = this;
-
-      axios
-        .get(`https://localhost:44331/api/animeusers/${email}/${password}`)
-        .then(res => {
-          if (res.status === 200) {
-            authStore.setUser(res.data);
-            this.$router.push("/");
-            location.reload();
-            return;
-          }
-        });
-        
-
-          this.error = true;
-    },*/
+    }
   },
 
   components: {
